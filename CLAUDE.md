@@ -7,6 +7,12 @@ Free site taking English speakers already in Canada from zero French to NCLC 7
 - `ai/`: Python package + local API server, no UI (owned by the user)
 - `api/openapi.yaml`: the only contract between web/ and ai/
 
+Each part has its own `CLAUDE.md`. CI is split by path: `.github/workflows/web-deploy.yml`
+runs on `web/` or spec changes and deploys to https://apurbapokharel.github.io/french/;
+`.github/workflows/ai-ci.yml` runs on `ai/` or spec changes. Release tags: `web-v…`, `ai-v…`.
+
+Licences: code is MIT (`LICENSE`), lesson content is CC BY 4.0 (`LICENSE-CONTENT`).
+
 ## Code rules
 
 - No automated tests unless the user asks for them.

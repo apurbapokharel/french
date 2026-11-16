@@ -1,0 +1,18 @@
+[project]
+name = "french-ai"
+version = "0.1.0"
+description = "Local speech AI server for the French for Canadian PR site"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "starlette>=1.10",
+    "uvicorn>=0.32",
+]
+
+[project.scripts]
+french-ai = "french_ai.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

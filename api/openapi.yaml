@@ -1,0 +1,42 @@
+openapi: 3.1.0
+info:
+  title: French local AI server
+  version: 1.0.0
+  license:
+    name: MIT
+    identifier: MIT
+servers:
+  - url: http://127.0.0.1:8765
+paths:
+  /v1/health:
+    get:
+      operationId: getHealth
+      summary: Server status
+      responses:
+        "200":
+          description: The server is running
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+components:
+  schemas:
+    Health:
+      type: object
+      required: [server_version, api_version, engine, model, ready]
+      properties:
+        server_version:
+          type: string
+          examples: ["0.1.0"]
+        api_version:
+          type: string
+          examples: ["1.0.0"]
+        engine:
+          type: ["string", "null"]
+          description: Active serving engine, or null when none is loaded
+        model:
+          type: ["string", "null"]
+          description: Active model, or null when none is selected
+        ready:
+          type: boolean
+          description: True when a model is loaded and the server can accept transcription requests

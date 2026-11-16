@@ -1,0 +1,62 @@
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #666666;
+  --ok-bg: #e3f5e8;
+  --ok-fg: #14532d;
+  --off-bg: #f1f1f1;
+  --off-fg: #555555;
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --fg: #eeeeee;
+    --muted: #aaaaaa;
+    --ok-bg: #12351f;
+    --ok-fg: #a7f3c0;
+    --off-bg: #2a2a2a;
+    --off-fg: #bbbbbb;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--off-bg);
+  color: var(--off-fg);
+}
+
+.badge[data-state="connected"] {
+  background: var(--ok-bg);
+  color: var(--ok-fg);
+}
+
+main {
+  max-width: 40rem;
+  color: var(--muted);
+}
