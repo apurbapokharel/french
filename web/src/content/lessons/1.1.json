@@ -1,0 +1,123 @@
+{
+  "$schema": "../lesson.schema.json",
+  "id": "1.1",
+  "unit": 1,
+  "order": 1,
+  "title": "Hello and goodbye",
+  "canDo": "greet someone, say goodbye and be polite",
+  "cefrArea": "Conversation",
+  "dialogue": {
+    "setting": "Priya has just moved into an apartment building in Ottawa. She stops at the front desk to ask the building manager, Mr. Gagnon, for a form.",
+    "lines": [
+      { "speaker": "M. Gagnon", "fr": "Bonjour, madame !", "en": "Hello, ma'am!" },
+      { "speaker": "Priya", "fr": "Bonjour, monsieur. Comment allez-vous ?", "en": "Hello, sir. How are you?" },
+      { "speaker": "M. Gagnon", "fr": "Très bien, merci. Et vous ?", "en": "Very well, thank you. And you?" },
+      { "speaker": "Priya", "fr": "Bien, merci. Un formulaire, s'il vous plaît.", "en": "Fine, thank you. A form, please." },
+      { "speaker": "M. Gagnon", "fr": "Voilà.", "en": "Here you go." },
+      { "speaker": "Priya", "fr": "Merci beaucoup !", "en": "Thank you very much!" },
+      { "speaker": "M. Gagnon", "fr": "Bienvenue ! Bonne journée !", "en": "You're welcome! Have a good day!", "uncertain": true },
+      { "speaker": "Priya", "fr": "Merci, vous aussi. Au revoir !", "en": "Thanks, you too. Goodbye!" }
+    ]
+  },
+  "vocabulary": [
+    { "fr": "bonjour", "en": "hello, good morning", "note": "Used all day, until early evening." },
+    { "fr": "bonsoir", "en": "good evening", "note": "Used from about 6 p.m. to greet someone. To say goodbye in the evening, use Bonne soirée !" },
+    { "fr": "salut", "en": "hi, bye", "note": "Informal: friends, family and children only." },
+    { "fr": "au revoir", "en": "goodbye" },
+    { "fr": "monsieur", "en": "sir, Mr." },
+    { "fr": "madame", "en": "ma'am, Mrs., Ms.", "note": "Used for any adult woman, married or not." },
+    { "fr": "Comment allez-vous ?", "en": "How are you?", "note": "Formal." },
+    { "fr": "Ça va ?", "en": "How's it going?", "note": "Informal. The answer can also be Ça va: \"It's going fine.\"" },
+    { "fr": "très bien", "en": "very well" },
+    { "fr": "bien", "en": "well, fine" },
+    { "fr": "Et vous ?", "en": "And you?", "note": "Formal." },
+    { "fr": "merci", "en": "thank you" },
+    { "fr": "merci beaucoup", "en": "thank you very much" },
+    { "fr": "s'il vous plaît", "en": "please", "note": "Formal. With friends: s'il te plaît." },
+    { "fr": "de rien", "en": "you're welcome" },
+    {
+      "fr": "bienvenue",
+      "en": "welcome; you're welcome",
+      "canadianNote": "In Quebec, bienvenue is a common reply to merci. In France it only means \"welcome\".",
+      "uncertain": true
+    },
+    { "fr": "voilà", "en": "here you go, there it is" },
+    { "fr": "Bonne journée !", "en": "Have a good day!" },
+    { "fr": "vous aussi", "en": "you too", "note": "Formal." },
+    { "fr": "un formulaire", "en": "a form" }
+  ],
+  "grammar": {
+    "title": "Formal and informal greetings",
+    "explanation": [
+      "French has a formal way and an informal way to talk to someone. Use the formal way with people you don't know, at work, and in shops and offices. Use the informal way with friends, family and children.",
+      "When in doubt, be formal. In this unit you speak formally and only need to recognise the informal greetings. You'll learn to use them in unit 3."
+    ],
+    "examples": [
+      { "fr": "Bonjour, madame. Comment allez-vous ?", "en": "Hello, ma'am. How are you? (formal)" },
+      { "fr": "Salut ! Ça va ?", "en": "Hi! How's it going? (informal)" },
+      { "fr": "Au revoir, monsieur. Bonne journée !", "en": "Goodbye, sir. Have a good day! (formal)" }
+    ]
+  },
+  "pronunciation": {
+    "sound": "Silent final letters",
+    "explanation": [
+      "Most consonants at the end of a French word are not pronounced: the s in vous, the t in salut, the z in allez, the p in beaucoup.",
+      "A final e is usually silent too, as in madame.",
+      "The letters c, r, f and l are often pronounced at the end of a word. Think of the English word \"careful\". You hear the r in bonjour."
+    ],
+    "examples": [
+      { "fr": "vous", "en": "you (silent s)" },
+      { "fr": "salut", "en": "hi (silent t)" },
+      { "fr": "beaucoup", "en": "a lot (silent p)" },
+      { "fr": "s'il vous plaît", "en": "please (silent s in vous, silent t in plaît)" },
+      { "fr": "bonjour", "en": "hello (the r is heard)" }
+    ]
+  },
+  "exercises": [
+    { "type": "listen-choose", "fr": "Au revoir !", "options": ["Goodbye!", "Hello!", "Thank you!"], "answer": 0 },
+    {
+      "type": "multiple-choice",
+      "prompt": "You meet your new manager. How do you ask how they are?",
+      "options": ["Comment allez-vous ?", "Ça va ?", "Salut !"],
+      "answer": 0
+    },
+    { "type": "word-order", "en": "Very well, thank you.", "words": ["Très", "bien,", "merci."] },
+    { "type": "fill-blank", "before": "Merci ", "after": " !", "answer": "beaucoup", "en": "Thank you very much!" },
+    { "type": "dictation", "fr": "Bonjour, monsieur.", "en": "Hello, sir." },
+    {
+      "type": "multiple-choice",
+      "prompt": "Someone says \"Merci !\" to you. What can you answer?",
+      "options": ["De rien.", "Au revoir.", "Bonsoir."],
+      "answer": 0
+    }
+  ],
+  "drills": [
+    { "fr": "Bonjour, madame.", "en": "Hello, ma'am." },
+    { "fr": "Comment allez-vous ?", "en": "How are you?" },
+    { "fr": "Très bien, merci. Et vous ?", "en": "Very well, thank you. And you?" },
+    { "fr": "Un formulaire, s'il vous plaît.", "en": "A form, please." },
+    { "fr": "Merci beaucoup !", "en": "Thank you very much!" },
+    { "fr": "Au revoir, bonne journée !", "en": "Goodbye, have a good day!" }
+  ],
+  "canDoCheck": [
+    {
+      "type": "multiple-choice",
+      "prompt": "You walk into a Service Canada office at 10 a.m. What do you say first?",
+      "options": ["Bonjour !", "Bonsoir !", "Au revoir !"],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "The clerk hands you a form. What do you say?",
+      "options": ["Merci.", "Salut.", "Ça va ?"],
+      "answer": 0
+    },
+    {
+      "type": "listen-choose",
+      "fr": "Bonne journée !",
+      "options": ["Have a good day!", "Good evening!", "See you tomorrow!"],
+      "answer": 0
+    }
+  ],
+  "review": { "status": "unreviewed" }
+}

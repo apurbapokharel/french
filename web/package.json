@@ -5,13 +5,20 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "gen": "openapi-typescript ../api/openapi.yaml -o src/api/schema.d.ts",
+    "gen": "npm run gen:api && npm run gen:content",
     "dev": "npm run gen && vite",
     "typecheck": "npm run gen && tsc --noEmit",
-    "build": "npm run typecheck && vite build",
-    "preview": "vite preview"
+    "build": "npm run validate:content && npm run typecheck && vite build",
+    "preview": "vite preview",
+    "gen:api": "openapi-typescript ../api/openapi.yaml -o src/api/schema.d.ts",
+    "gen:content": "json2ts -i src/content/lesson.schema.json -o src/content/types/lesson.d.ts --bannerComment \"\" && json2ts -i src/content/unit.schema.json -o src/content/types/unit.d.ts --bannerComment \"\"",
+    "validate:content": "node scripts/validate-content.ts"
   },
   "devDependencies": {
+    "@types/node": "24.19.2",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "json-schema-to-typescript": "16.0.0",
     "openapi-typescript": "7.13.0",
     "typescript": "5.9.3",
     "vite": "8.3.8"

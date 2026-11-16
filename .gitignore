@@ -4,3 +4,4 @@ web/src/api/schema.d.ts
 __pycache__/
 .venv/
 *.egg-info/
+web/src/content/types/

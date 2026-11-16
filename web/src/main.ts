@@ -1,5 +1,7 @@
 import "./style.css";
 import { fetchHealth } from "./ai";
+import { startRouter } from "./router";
+import { initSpeech } from "./speech";
 
 const POLL_MS = 5000;
 const badge = document.querySelector<HTMLElement>("#ai-status")!;
@@ -18,4 +20,6 @@ async function updateBadge(): Promise<void> {
   setTimeout(updateBadge, POLL_MS);
 }
 
+initSpeech();
+startRouter(document.querySelector<HTMLElement>("#app")!);
 updateBadge();

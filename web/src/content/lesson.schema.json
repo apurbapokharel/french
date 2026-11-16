@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "lesson.schema.json",
+  "title": "Lesson",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "unit",
+    "order",
+    "title",
+    "canDo",
+    "cefrArea",
+    "dialogue",
+    "vocabulary",
+    "grammar",
+    "pronunciation",
+    "exercises",
+    "drills",
+    "canDoCheck",
+    "review"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[1-8]\\.[1-4]$", "description": "Unit and order, for example 1.1" },
+    "unit": { "type": "integer", "minimum": 1, "maximum": 8 },
+    "order": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "title": { "type": "string", "minLength": 1 },
+    "canDo": { "type": "string", "minLength": 1, "description": "Completes the sentence 'After this lesson you can…'" },
+    "cefrArea": { "$ref": "#/definitions/CefrArea" },
+    "dialogue": { "$ref": "#/definitions/Dialogue" },
+    "vocabulary": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/VocabItem" } },
+    "grammar": { "$ref": "#/definitions/GrammarPoint" },
+    "pronunciation": { "$ref": "#/definitions/PronunciationPoint" },
+    "exercises": { "type": "array", "items": { "$ref": "#/definitions/Exercise" } },
+    "drills": { "type": "array", "minItems": 5, "items": { "$ref": "#/definitions/Phrase" } },
+    "canDoCheck": { "type": "array", "items": { "$ref": "#/definitions/Exercise" } },
+    "review": { "$ref": "#/definitions/ReviewStatus" }
+  },
+  "definitions": {
+    "CefrArea": {
+      "type": "string",
+      "enum": [
+        "Conversation",
+        "Information exchange",
+        "Describing experience",
+        "Obtaining goods and services",
+        "Understanding announcements",
+        "Goal-oriented co-operation"
+      ]
+    },
+    "Uncertain": {
+      "type": "boolean",
+      "description": "True when this French has not been confirmed against a trusted reference"
+    },
+    "Phrase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fr", "en"],
+      "properties": {
+        "fr": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "DialogueLine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["speaker", "fr", "en"],
+      "properties": {
+        "speaker": { "type": "string", "minLength": 1 },
+        "fr": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "Dialogue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["setting", "lines"],
+      "properties": {
+        "setting": { "type": "string", "minLength": 1, "description": "Where the dialogue happens, in English" },
+        "lines": { "type": "array", "minItems": 2, "items": { "$ref": "#/definitions/DialogueLine" } }
+      }
+    },
+    "VocabItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fr", "en"],
+      "properties": {
+        "fr": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "note": { "type": "string" },
+        "canadianNote": { "type": "string", "description": "How usage in Canada differs" },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "GrammarPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "explanation", "examples"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "explanation": { "type": "array", "minItems": 1, "items": { "type": "string" }, "description": "Paragraphs in English" },
+        "examples": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "$ref": "#/definitions/Phrase" } }
+      }
+    },
+    "PronunciationPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sound", "explanation", "examples"],
+      "properties": {
+        "sound": { "type": "string", "minLength": 1 },
+        "explanation": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "examples": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/Phrase" } }
+      }
+    },
+    "Exercise": {
+      "type": "object",
+      "required": ["type"],
+      "discriminator": { "propertyName": "type" },
+      "oneOf": [
+        { "$ref": "#/definitions/ListenChooseExercise" },
+        { "$ref": "#/definitions/MultipleChoiceExercise" },
+        { "$ref": "#/definitions/WordOrderExercise" },
+        { "$ref": "#/definitions/FillBlankExercise" },
+        { "$ref": "#/definitions/DictationExercise" }
+      ]
+    },
+    "ListenChooseExercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "fr", "options", "answer"],
+      "properties": {
+        "type": { "const": "listen-choose" },
+        "fr": { "type": "string", "minLength": 1, "description": "French the learner hears" },
+        "options": { "type": "array", "minItems": 2, "items": { "type": "string" }, "description": "English meanings" },
+        "answer": { "type": "integer", "minimum": 0, "description": "Index of the correct option" },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "MultipleChoiceExercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "prompt", "options", "answer"],
+      "properties": {
+        "type": { "const": "multiple-choice" },
+        "prompt": { "type": "string", "minLength": 1 },
+        "options": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "answer": { "type": "integer", "minimum": 0, "description": "Index of the correct option" },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "WordOrderExercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "en", "words"],
+      "properties": {
+        "type": { "const": "word-order" },
+        "en": { "type": "string", "minLength": 1 },
+        "words": { "type": "array", "minItems": 2, "items": { "type": "string" }, "description": "The French words in the correct order" },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "FillBlankExercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "before", "after", "answer", "en"],
+      "properties": {
+        "type": { "const": "fill-blank" },
+        "before": { "type": "string" },
+        "after": { "type": "string" },
+        "answer": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1, "description": "English of the whole sentence" },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "DictationExercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "fr", "en"],
+      "properties": {
+        "type": { "const": "dictation" },
+        "fr": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "uncertain": { "$ref": "#/definitions/Uncertain" }
+      }
+    },
+    "ReviewStatus": {
+      "type": "object",
+      "required": ["status"],
+      "discriminator": { "propertyName": "status" },
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": { "status": { "const": "unreviewed" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reviewer", "date"],
+          "properties": {
+            "status": { "const": "reviewed" },
+            "reviewer": { "type": "string", "minLength": 1 },
+            "date": { "type": "string", "format": "date" }
+          }
+        }
+      ]
+    }
+  }
+}
