@@ -86,7 +86,7 @@ website ──HTTP──▶ local server (API)
 
 - **Website:**
   - Milestone roadmap and the TEF / TCF exam guides.
-  - A1 lessons and spaced-repetition flashcards.
+  - A1 lessons (8 units, 32 lessons and 8 checkpoints, designed in `docs/CURRICULUM.md`) and spaced-repetition flashcards.
   - Repeat-after-me speaking drills: compare what was said with the expected sentence and highlight missed words.
 - **AI:** ML-0 to ML-3, through the local install.
 - **Done when:** the M1 tester can complete the A1 lessons, flashcards and speaking drills using the local install.
