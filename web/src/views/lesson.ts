@@ -2,7 +2,7 @@ import { fill, h } from "../dom";
 import { allLessons, canDoSentence, reportMistakeUrl, unitByNumber, type Lesson } from "../content";
 import type { Phrase } from "../content/types/lesson";
 import { exerciseCard, lessonSlots, shuffle, type ExerciseSlot } from "../exercises";
-import { exerciseResult, isCompleted, progressSaved, setCompleted } from "../progress";
+import { addLessonCards, exerciseResult, isCompleted, progressSaved, setCompleted } from "../progress";
 import { speak, stopSpeaking } from "../speech";
 import { frenchItem, uncertainFlag, unreviewedBadge, voicePanel } from "../ui";
 
@@ -178,6 +178,10 @@ function pointSection(heading: string, point: { explanation: string[]; examples:
  * @returns the page element
  */
 export function lessonView(lesson: Lesson): HTMLElement {
+  addLessonCards(
+    lesson.id,
+    lesson.vocabulary.map((item) => item.fr),
+  );
   const unit = unitByNumber(lesson.unit);
   return h(
     "article",

@@ -624,3 +624,87 @@ button:disabled {
   flex-basis: 100%;
   font-size: 0.85rem;
 }
+
+.flash-stage {
+  margin-top: 0.5rem;
+}
+
+.flash-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.flash-face {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+}
+
+.flash-face p {
+  margin: 0;
+}
+
+.flash-direction {
+  font-size: 0.85rem;
+}
+
+.flash-face .fr,
+.flash-en {
+  font-size: 1.3rem;
+}
+
+.flash-en {
+  font-weight: 600;
+}
+
+.flash-back:empty {
+  display: none;
+}
+
+.flash-back {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.flash-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.flash-actions .primary {
+  grid-column: 1 / -1;
+}
+
+.rate {
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  padding: 8px 4px;
+}
+
+.rate-name {
+  font-weight: 600;
+}
+
+.rate-when {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.rate-again .rate-name {
+  color: var(--accent);
+}
+
+.rate-good .rate-name,
+.rate-easy .rate-name {
+  color: var(--ok-fg);
+}
+
+.flash-done p {
+  margin: 0.25rem 0;
+}

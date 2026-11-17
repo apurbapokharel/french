@@ -1,7 +1,7 @@
 import { readSetting, writeSetting } from "./storage";
 
 const KEY = "progress";
-const VERSION = 1;
+const VERSION = 2;
 
 export const M1_LESSON_COUNT = 32;
 
@@ -15,20 +15,34 @@ export interface LessonProgress {
   results: Record<string, ExerciseResult>;
 }
 
+export type CardDirection = "fr-en" | "en-fr";
+
+export interface Card {
+  lessonId: string;
+  fr: string;
+  direction: CardDirection;
+  ease: number;
+  interval: number;
+  reps: number;
+  due: string;
+}
+
 interface Progress {
   version: number;
   lessons: Record<string, LessonProgress>;
   activeDays: string[];
+  cards: Record<string, Card>;
 }
 
 type Raw = Record<string, unknown>;
 
 const MIGRATIONS: Record<number, (data: Raw) => Raw> = {
   0: (data) => ({ ...data, version: 1, lessons: data.lessons ?? {}, activeDays: data.activeDays ?? [] }),
+  1: (data) => ({ ...data, version: 2, cards: data.cards ?? {} }),
 };
 
 function fresh(): Progress {
-  return { version: VERSION, lessons: {}, activeDays: [] };
+  return { version: VERSION, lessons: {}, activeDays: [], cards: {} };
 }
 
 function isRecord(value: unknown): value is Raw {
@@ -48,6 +62,19 @@ function isLessonProgress(value: unknown): value is LessonProgress {
   );
 }
 
+function isCard(value: unknown): value is Card {
+  return (
+    isRecord(value) &&
+    typeof value.lessonId === "string" &&
+    typeof value.fr === "string" &&
+    (value.direction === "fr-en" || value.direction === "en-fr") &&
+    typeof value.ease === "number" &&
+    typeof value.interval === "number" &&
+    typeof value.reps === "number" &&
+    typeof value.due === "string"
+  );
+}
+
 function isProgress(value: unknown): value is Progress {
   return (
     isRecord(value) &&
@@ -55,7 +82,9 @@ function isProgress(value: unknown): value is Progress {
     isRecord(value.lessons) &&
     Object.values(value.lessons).every(isLessonProgress) &&
     Array.isArray(value.activeDays) &&
-    value.activeDays.every((day) => typeof day === "string")
+    value.activeDays.every((day) => typeof day === "string") &&
+    isRecord(value.cards) &&
+    Object.values(value.cards).every(isCard)
   );
 }
 
@@ -98,7 +127,13 @@ function save(): void {
   if (persist) saved = writeSetting(KEY, JSON.stringify(state));
 }
 
-function dayKey(date: Date): string {
+/**
+ * A date as a local calendar day.
+ *
+ * @param date the date, today when omitted
+ * @returns the day as YYYY-MM-DD
+ */
+export function dayKey(date = new Date()): string {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
   const d = String(date.getDate()).padStart(2, "0");
@@ -198,4 +233,45 @@ export function streakDays(): number {
     cursor.setDate(cursor.getDate() - 1);
   }
   return streak;
+}
+
+/**
+ * Add both-direction flashcards for a lesson's vocabulary, keeping cards that already exist.
+ *
+ * @param lessonId lesson id
+ * @param frenchItems the French of each vocabulary item
+ */
+export function addLessonCards(lessonId: string, frenchItems: string[]): void {
+  const today = dayKey();
+  let added = false;
+  for (const fr of frenchItems) {
+    for (const direction of ["fr-en", "en-fr"] as const) {
+      const id = `${direction}:${fr}`;
+      if (state.cards[id]) continue;
+      state.cards[id] = { lessonId, fr, direction, ease: 2.5, interval: 0, reps: 0, due: today };
+      added = true;
+    }
+  }
+  if (added) save();
+}
+
+/**
+ * Every flashcard with its id.
+ *
+ * @returns pairs of card id and card
+ */
+export function allCards(): [string, Card][] {
+  return Object.entries(state.cards);
+}
+
+/**
+ * Save a card's new schedule.
+ *
+ * @param id card id
+ * @param card the updated card
+ */
+export function saveCard(id: string, card: Card): void {
+  state.cards[id] = card;
+  markActive();
+  save();
 }
