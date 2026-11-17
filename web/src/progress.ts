@@ -1,7 +1,7 @@
 import { readSetting, writeSetting } from "./storage";
 
 const KEY = "progress";
-const VERSION = 2;
+const VERSION = 3;
 
 export const M1_LESSON_COUNT = 32;
 
@@ -27,11 +27,14 @@ export interface Card {
   due: string;
 }
 
+export type TargetExam = "tef" | "tcf" | "undecided";
+
 export interface Progress {
   version: number;
   lessons: Record<string, LessonProgress>;
   activeDays: string[];
   cards: Record<string, Card>;
+  targetExam: TargetExam;
 }
 
 type Raw = Record<string, unknown>;
@@ -39,10 +42,11 @@ type Raw = Record<string, unknown>;
 const MIGRATIONS: Record<number, (data: Raw) => Raw> = {
   0: (data) => ({ ...data, version: 1, lessons: data.lessons ?? {}, activeDays: data.activeDays ?? [] }),
   1: (data) => ({ ...data, version: 2, cards: data.cards ?? {} }),
+  2: (data) => ({ ...data, version: 3, targetExam: data.targetExam ?? "undecided" }),
 };
 
 function fresh(): Progress {
-  return { version: VERSION, lessons: {}, activeDays: [], cards: {} };
+  return { version: VERSION, lessons: {}, activeDays: [], cards: {}, targetExam: "undecided" };
 }
 
 function isRecord(value: unknown): value is Raw {
@@ -84,7 +88,8 @@ function isProgress(value: unknown): value is Progress {
     Array.isArray(value.activeDays) &&
     value.activeDays.every((day) => typeof day === "string") &&
     isRecord(value.cards) &&
-    Object.values(value.cards).every(isCard)
+    Object.values(value.cards).every(isCard) &&
+    (value.targetExam === "tef" || value.targetExam === "tcf" || value.targetExam === "undecided")
   );
 }
 
@@ -315,4 +320,23 @@ export function progressSummary(progress: Progress): { lessons: number; cards: n
     lessons: Object.values(progress.lessons).filter((lesson) => lesson.completedAt !== undefined).length,
     cards: Object.keys(progress.cards).length,
   };
+}
+
+/**
+ * The exam the learner is preparing for.
+ *
+ * @returns "tef", "tcf" or "undecided"
+ */
+export function targetExam(): TargetExam {
+  return state.targetExam;
+}
+
+/**
+ * Save the exam the learner is preparing for.
+ *
+ * @param exam "tef", "tcf" or "undecided"
+ */
+export function setTargetExam(exam: TargetExam): void {
+  state.targetExam = exam;
+  save();
 }

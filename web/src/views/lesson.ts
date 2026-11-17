@@ -186,7 +186,7 @@ export function lessonView(lesson: Lesson): HTMLElement {
   return h(
     "article",
     { class: "page lesson" },
-    h("a", { href: "#/", class: "back" }, "← All lessons"),
+    h("a", { href: "#/lessons", class: "back" }, "← All lessons"),
     h("p", { class: "muted" }, unit ? `Unit ${unit.unit}: ${unit.title} · Lesson ${lesson.id}` : `Lesson ${lesson.id}`),
     h("h2", {}, lesson.title, " ", unreviewedBadge(lesson)),
     h("p", { class: "can-do" }, canDoSentence(lesson)),

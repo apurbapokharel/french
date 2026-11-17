@@ -728,3 +728,131 @@ button:disabled {
   color: var(--ok-fg);
   font-weight: 600;
 }
+
+.disclaimer {
+  border-left-color: var(--accent);
+  margin: 1rem 0;
+}
+
+.source {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.25rem 0 1rem;
+}
+
+.source a {
+  color: var(--muted);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+caption {
+  text-align: left;
+  font-weight: 600;
+  padding-bottom: 6px;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  background: var(--surface);
+}
+
+tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.exam-picker {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.exam-picker legend {
+  font-weight: 600;
+  padding: 0 4px;
+}
+
+.exam-picker label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+}
+
+.exam-picker input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent);
+}
+
+.milestones {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  gap: 10px;
+}
+
+.milestone {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.milestone.available {
+  border-color: var(--ok-fg);
+}
+
+.milestone-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+}
+
+.milestone dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+}
+
+.milestone dt {
+  color: var(--muted);
+}
+
+.milestone dd {
+  margin: 0;
+}
+
+.scores table {
+  font-size: 0.85rem;
+}
+
+.scores th,
+.scores td {
+  white-space: nowrap;
+  padding: 6px 5px;
+}
