@@ -708,3 +708,23 @@ button:disabled {
 .flash-done p {
   margin: 0.25rem 0;
 }
+
+.backup-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.backup-status:empty {
+  display: none;
+}
+
+.backup-status.error {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.backup-status.ok {
+  color: var(--ok-fg);
+  font-weight: 600;
+}

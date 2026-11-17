@@ -27,7 +27,7 @@ export interface Card {
   due: string;
 }
 
-interface Progress {
+export interface Progress {
   version: number;
   lessons: Record<string, LessonProgress>;
   activeDays: string[];
@@ -100,27 +100,36 @@ function migrate(data: Raw): Raw | null {
   return current;
 }
 
+/**
+ * Check stored or imported progress and bring it up to the current version.
+ *
+ * @param data parsed JSON
+ * @returns the progress, or "newer" when it comes from a newer version of the site, or "invalid" when it isn't progress data
+ */
+export function parseProgress(data: unknown): Progress | "newer" | "invalid" {
+  if (!isRecord(data)) return "invalid";
+  if (typeof data.version === "number" && data.version > VERSION) return "newer";
+  const migrated = migrate(structuredClone(data));
+  return isProgress(migrated) ? migrated : "invalid";
+}
+
 let persist = true;
 
 function load(): Progress {
   const text = readSetting(KEY);
   if (text === null) return fresh();
-  let parsed: unknown;
+  let data: unknown;
   try {
-    parsed = JSON.parse(text);
+    data = JSON.parse(text);
   } catch {
     return fresh();
   }
-  if (!isRecord(parsed)) return fresh();
-  if (typeof parsed.version === "number" && parsed.version > VERSION) {
-    persist = false;
-    return fresh();
-  }
-  const migrated = migrate(parsed);
-  return isProgress(migrated) ? migrated : fresh();
+  const parsed = parseProgress(data);
+  if (parsed === "newer") persist = false;
+  return typeof parsed === "string" ? fresh() : parsed;
 }
 
-const state = load();
+let state = load();
 let saved = persist && writeSetting(KEY, JSON.stringify(state));
 
 function save(): void {
@@ -274,4 +283,36 @@ export function saveCard(id: string, card: Card): void {
   state.cards[id] = card;
   markActive();
   save();
+}
+
+/**
+ * A copy of all progress, for backups.
+ *
+ * @returns the progress record
+ */
+export function currentProgress(): Progress {
+  return structuredClone(state);
+}
+
+/**
+ * Replace all progress, for restoring a backup.
+ *
+ * @param progress progress already checked by parseProgress
+ */
+export function replaceProgress(progress: Progress): void {
+  state = structuredClone(progress);
+  save();
+}
+
+/**
+ * Short counts that describe a progress record.
+ *
+ * @param progress the progress record
+ * @returns how many lessons are completed and how many flashcards exist
+ */
+export function progressSummary(progress: Progress): { lessons: number; cards: number } {
+  return {
+    lessons: Object.values(progress.lessons).filter((lesson) => lesson.completedAt !== undefined).length,
+    cards: Object.keys(progress.cards).length,
+  };
 }
