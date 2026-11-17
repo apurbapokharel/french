@@ -1,5 +1,6 @@
 import { h } from "../dom";
 import { canDoSentence, unitsWithLessons } from "../content";
+import { isCompleted } from "../progress";
 import { unreviewedBadge } from "../ui";
 
 /**
@@ -30,7 +31,12 @@ export function lessonListView(): HTMLElement {
                 { href: `#/lessons/${lesson.id}`, class: "lesson-card" },
                 h("span", { class: "lesson-title" }, h("span", { class: "lesson-id" }, lesson.id), lesson.title),
                 h("span", { class: "can-do" }, canDoSentence(lesson)),
-                unreviewedBadge(lesson),
+                h(
+                  "span",
+                  { class: "badges" },
+                  isCompleted(lesson.id) && h("span", { class: "badge done" }, "✓ Completed"),
+                  unreviewedBadge(lesson),
+                ),
               ),
             ),
           ),

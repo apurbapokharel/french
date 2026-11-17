@@ -1,12 +1,15 @@
 import { readSetting, writeSetting } from "./storage";
 
 const VOICE_KEY = "voiceURI";
-const NORMAL_RATE = 0.9;
-const SLOW_RATE = 0.6;
+const SPEED_KEY = "slowSpeed";
+const NORMAL_SPEED = 1;
+const DEFAULT_SLOW_SPEED = 0.6;
 const VOICE_WAIT_MS = 2000;
 const PREFERRED_LANGS = ["fr-ca", "fr-fr"];
 
 export const speechSupported = typeof window !== "undefined" && "speechSynthesis" in window;
+
+export const SLOW_SPEEDS = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 
 let voices: SpeechSynthesisVoice[] = [];
 let voice: SpeechSynthesisVoice | null = null;
@@ -92,6 +95,25 @@ export function onVoicesChange(listener: () => void, signal: AbortSignal): void 
   signal.addEventListener("abort", () => listeners.delete(listener), { once: true });
 }
 
+/**
+ * The speed of slow playback.
+ *
+ * @returns the learner's saved slow speed if it is one of SLOW_SPEEDS, otherwise the default
+ */
+export function currentSlowSpeed(): number {
+  const stored = Number(readSetting(SPEED_KEY));
+  return SLOW_SPEEDS.includes(stored) ? stored : DEFAULT_SLOW_SPEED;
+}
+
+/**
+ * Choose and save the speed of slow playback.
+ *
+ * @param speed one of SLOW_SPEEDS
+ */
+export function chooseSlowSpeed(speed: number): void {
+  writeSetting(SPEED_KEY, String(speed));
+}
+
 function interrupt(): void {
   settlePending?.(false);
   settlePending = null;
@@ -102,7 +124,7 @@ function interrupt(): void {
  * Speak French text, interrupting anything already playing.
  *
  * @param text French text
- * @param slow true for slower playback
+ * @param slow true to play at the learner's slow speed instead of normal speed
  * @returns a promise of true when the text was spoken to the end, or false when it failed or was interrupted by other speech or stopSpeaking
  */
 export function speak(text: string, slow = false): Promise<boolean> {
@@ -111,7 +133,7 @@ export function speak(text: string, slow = false): Promise<boolean> {
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = voice?.lang ?? "fr-CA";
   if (voice) utterance.voice = voice;
-  utterance.rate = slow ? SLOW_RATE : NORMAL_RATE;
+  utterance.rate = slow ? currentSlowSpeed() : NORMAL_SPEED;
   return new Promise((resolve) => {
     const settle = (completed: boolean) => {
       if (settlePending !== settle) return;

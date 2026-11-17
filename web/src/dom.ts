@@ -1,4 +1,4 @@
-type Child = Node | string | null | undefined | false;
+export type Child = Node | string | null | undefined | false;
 type Props = Record<string, string | number | boolean | EventListener | undefined>;
 
 /**
@@ -36,4 +36,14 @@ export function h<K extends keyof HTMLElementTagNameMap>(
  */
 export function frText(text: string): string {
   return text.replace(/ ([!?:;»])/g, " $1").replace(/(«) /g, "$1 ");
+}
+
+/**
+ * Replace an element's children.
+ *
+ * @param el the element
+ * @param children nodes or text; null, undefined and false are skipped
+ */
+export function fill(el: Element, ...children: Child[]): void {
+  el.replaceChildren(...children.filter((child): child is Node | string => child !== null && child !== undefined && child !== false));
 }

@@ -4,6 +4,7 @@ import { startPage } from "./page";
 import { stopSpeaking } from "./speech";
 import { lessonListView } from "./views/lessonList";
 import { lessonView } from "./views/lesson";
+import { progressView } from "./views/progress";
 
 function notFound(): HTMLElement {
   return h("div", { class: "page" }, h("h2", {}, "Page not found"), h("a", { href: "#/" }, "Go to the lessons"));
@@ -12,6 +13,7 @@ function notFound(): HTMLElement {
 function resolve(hash: string): { title: string; view: HTMLElement } {
   const path = hash.replace(/^#/, "") || "/";
   if (path === "/" || path === "/lessons") return { title: "Lessons", view: lessonListView() };
+  if (path === "/progress") return { title: "Progress", view: progressView() };
   const lessonMatch = path.match(/^\/lessons\/([^/]+)$/);
   const lesson = lessonMatch && lessonById(decodeURIComponent(lessonMatch[1]));
   if (lesson) return { title: `${lesson.id} ${lesson.title}`, view: lessonView(lesson) };

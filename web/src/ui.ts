@@ -2,13 +2,16 @@ import { h, frText } from "./dom";
 import type { Lesson } from "./content";
 import { pageSignal } from "./page";
 import {
+  chooseSlowSpeed,
   chooseVoice,
+  currentSlowSpeed,
   currentVoice,
   frenchVoices,
   initSpeech,
   onVoicesChange,
   speak,
   speechSupported,
+  SLOW_SPEEDS,
 } from "./speech";
 
 /**
@@ -17,7 +20,7 @@ import {
  * @param fr French text to speak
  * @returns a group of two buttons
  */
-function playButtons(fr: string): HTMLElement {
+export function playButtons(fr: string): HTMLElement {
   return h(
     "span",
     { class: "play" },
@@ -106,10 +109,41 @@ function voicePicker(): HTMLElement {
   );
   return h(
     "div",
+    { class: "voice-settings" },
+    h(
+      "div",
+      { class: "voice-row" },
+      h("label", { for: "voice-select" }, "French voice"),
+      select,
+      h("button", { type: "button", onclick: () => speak("Bonjour ! Comment allez-vous ?") }, "Test"),
+    ),
+    speedPicker(),
+  );
+}
+
+function speedPicker(): HTMLElement {
+  const buttons = SLOW_SPEEDS.map((speed) =>
+    h(
+      "button",
+      {
+        type: "button",
+        class: "speed",
+        "aria-pressed": String(speed === currentSlowSpeed()),
+        onclick: () => {
+          chooseSlowSpeed(speed);
+          buttons.forEach((b, i) => b.setAttribute("aria-pressed", String(SLOW_SPEEDS[i] === speed)));
+          speak("Bonjour ! Comment allez-vous ?", true);
+        },
+      },
+      `${speed}×`,
+    ),
+  );
+  return h(
+    "div",
     { class: "voice-row" },
-    h("label", { for: "voice-select" }, "French voice"),
-    select,
-    h("button", { type: "button", onclick: () => speak("Bonjour ! Comment allez-vous ?") }, "Test"),
+    h("span", { class: "label", id: "speed-label" }, "🐢 Slow speed"),
+    h("div", { class: "speeds", role: "group", "aria-labelledby": "speed-label" }, ...buttons),
+    h("span", { class: "muted speed-note" }, "▶ always plays at normal speed. 🐢 plays at the speed you pick here."),
   );
 }
 

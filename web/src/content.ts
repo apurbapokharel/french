@@ -23,6 +23,15 @@ export function unitsWithLessons(): { unit: Unit; lessons: Lesson[] }[] {
 }
 
 /**
+ * Every lesson, in course order.
+ *
+ * @returns the lessons
+ */
+export function allLessons(): Lesson[] {
+  return lessons;
+}
+
+/**
  * Find a lesson.
  *
  * @param id lesson id, for example "1.1"

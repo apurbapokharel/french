@@ -1,8 +1,71 @@
-import { h } from "../dom";
-import { canDoSentence, reportMistakeUrl, unitByNumber, type Lesson } from "../content";
+import { fill, h } from "../dom";
+import { allLessons, canDoSentence, reportMistakeUrl, unitByNumber, type Lesson } from "../content";
 import type { Phrase } from "../content/types/lesson";
+import { exerciseCard, lessonSlots, shuffle, type ExerciseSlot } from "../exercises";
+import { exerciseResult, isCompleted, progressSaved, setCompleted } from "../progress";
 import { speak, stopSpeaking } from "../speech";
 import { frenchItem, uncertainFlag, unreviewedBadge, voicePanel } from "../ui";
+
+const WARM_UP_SIZE = 4;
+
+function warmUpSlots(lesson: Lesson): ExerciseSlot[] {
+  const earlier = allLessons().filter(
+    (l) => (l.unit < lesson.unit || (l.unit === lesson.unit && l.order < lesson.order)) && isCompleted(l.id),
+  );
+  const priority = (slot: ExerciseSlot) => {
+    const result = exerciseResult(slot.lessonId, slot.key);
+    return result === undefined ? 1 : result.correct ? 2 : 0;
+  };
+  return shuffle(earlier.flatMap((l) => [...lessonSlots(l, "exercises"), ...lessonSlots(l, "canDoCheck")]))
+    .sort((a, b) => priority(a) - priority(b))
+    .slice(0, WARM_UP_SIZE);
+}
+
+function exerciseSection(heading: string, intro: string, slots: ExerciseSlot[], withSource = false): HTMLElement | null {
+  if (slots.length === 0) return null;
+  return h(
+    "section",
+    {},
+    h("h3", {}, heading),
+    h("p", { class: "muted" }, intro),
+    h("ol", { class: "exercises" }, ...slots.map((slot) => exerciseCard(slot, withSource ? `From lesson ${slot.lessonId}` : undefined))),
+  );
+}
+
+function completionSection(lesson: Lesson): HTMLElement {
+  const section = h("section", { class: "completion" });
+  const render = () => {
+    const done = isCompleted(lesson.id);
+    fill(
+      section,
+      h("h3", {}, "Finish"),
+      !progressSaved() &&
+        h("p", { class: "notice" }, "This browser is blocking storage, so your progress won't be kept after you leave this page."),
+      done
+        ? h("p", { class: "done" }, "✓ You've completed this lesson.")
+        : h("p", { class: "muted" }, "Done with the lesson? Mark it complete to count it in your progress."),
+      h(
+        "div",
+        { class: "completion-row" },
+        h(
+          "button",
+          {
+            type: "button",
+            class: done ? "" : "primary",
+            onclick: () => {
+              setCompleted(lesson.id, !done);
+              render();
+            },
+          },
+          done ? "Mark as not complete" : "Mark lesson complete",
+        ),
+        h("a", { href: "#/progress" }, "See your progress"),
+      ),
+    );
+  };
+  render();
+  return section;
+}
 
 function dialogueSection(lesson: Lesson): HTMLElement {
   const { setting, lines } = lesson.dialogue;
@@ -132,10 +195,18 @@ export function lessonView(lesson: Lesson): HTMLElement {
         " haven't been confirmed against a trusted reference.",
       ),
     voicePanel(),
+    exerciseSection("Warm-up", "A few questions from lessons you've finished.", warmUpSlots(lesson), true),
     dialogueSection(lesson),
     vocabularySection(lesson),
     pointSection(`Grammar: ${lesson.grammar.title}`, lesson.grammar),
     pointSection(`Pronunciation: ${lesson.pronunciation.sound}`, lesson.pronunciation),
+    exerciseSection(
+      "Practice",
+      "Each answer is checked straight away. Typed answers count even without accents, but look at the spelling shown.",
+      lessonSlots(lesson, "exercises"),
+    ),
+    exerciseSection("Can-do check", canDoSentence(lesson) + " Check it here.", lessonSlots(lesson, "canDoCheck")),
+    completionSection(lesson),
     h(
       "footer",
       { class: "lesson-footer" },

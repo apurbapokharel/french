@@ -17,11 +17,13 @@ export function readSetting(key: string): string | null {
  *
  * @param key storage key
  * @param value string to store
+ * @returns true when the value was stored, false when storage is blocked or full
  */
-export function writeSetting(key: string, value: string): void {
+export function writeSetting(key: string, value: string): boolean {
   try {
     localStorage.setItem(key, value);
+    return true;
   } catch {
-    return;
+    return false;
   }
 }
