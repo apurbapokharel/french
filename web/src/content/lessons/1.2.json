@@ -1,0 +1,131 @@
+{
+  "$schema": "../lesson.schema.json",
+  "id": "1.2",
+  "unit": 1,
+  "order": 2,
+  "title": "What's your name?",
+  "canDo": "say your name and ask someone's",
+  "cefrArea": "Conversation",
+  "dialogue": {
+    "setting": "It's Priya's first day at a new job in an office in Moncton, New Brunswick. The receptionist, Marie, greets her.",
+    "lines": [
+      { "speaker": "Marie", "fr": "Bonjour, madame ! Comment vous appelez-vous ?", "en": "Hello, ma'am! What's your name?" },
+      { "speaker": "Priya", "fr": "Bonjour. Je m'appelle Priya Sharma.", "en": "Hello. My name is Priya Sharma." },
+      { "speaker": "Marie", "fr": "Enchantée ! Moi, je m'appelle Marie.", "en": "Nice to meet you! I'm Marie." },
+      { "speaker": "Priya", "fr": "Enchantée, Marie.", "en": "Nice to meet you, Marie." },
+      { "speaker": "Marie", "fr": "Votre prénom, c'est Priya ?", "en": "Your first name is Priya?" },
+      {
+        "speaker": "Priya",
+        "fr": "Oui. Priya, c'est mon prénom, et Sharma, c'est mon nom de famille.",
+        "en": "Yes. Priya is my first name, and Sharma is my last name."
+      },
+      { "speaker": "Marie", "fr": "Merci. Ah, voici Luc. Luc, voici Priya.", "en": "Thank you. Ah, here's Luc. Luc, this is Priya." },
+      { "speaker": "Luc", "fr": "Bonjour, Priya ! Je suis Luc, votre collègue. Bienvenue !", "en": "Hello, Priya! I'm Luc, your coworker. Welcome!" },
+      { "speaker": "Priya", "fr": "Merci, Luc. Enchantée !", "en": "Thank you, Luc. Nice to meet you!" }
+    ]
+  },
+  "vocabulary": [
+    { "fr": "Comment vous appelez-vous ?", "en": "What's your name?", "note": "Formal. Literally \"How do you call yourself?\"" },
+    { "fr": "Je m'appelle…", "en": "My name is…", "note": "Literally \"I call myself…\"" },
+    {
+      "fr": "Enchanté.",
+      "en": "Nice to meet you.",
+      "note": "A woman writes Enchantée. Both sound exactly the same."
+    },
+    { "fr": "moi", "en": "me", "note": "Moi, je m'appelle Marie means \"As for me, my name is Marie.\"" },
+    { "fr": "Je suis…", "en": "I am…" },
+    { "fr": "Vous êtes… ?", "en": "Are you…?", "note": "Formal. Without the rising voice, Vous êtes… means \"You are…\"." },
+    { "fr": "le prénom", "en": "first name", "note": "You'll see Prénom on every form." },
+    { "fr": "le nom de famille", "en": "last name, family name" },
+    { "fr": "le nom", "en": "name; last name", "note": "On forms, Nom usually means your last name." },
+    { "fr": "Votre nom, s'il vous plaît ?", "en": "Your name, please?", "note": "What you'll often hear at an office counter." },
+    { "fr": "votre", "en": "your", "note": "Formal." },
+    { "fr": "mon", "en": "my", "note": "Used before some words, like mon prénom and mon nom. You'll learn the other forms later." },
+    { "fr": "c'est", "en": "it is, this is" },
+    { "fr": "oui", "en": "yes" },
+    { "fr": "non", "en": "no" },
+    { "fr": "voici", "en": "here is, this is", "note": "Use it to introduce someone or hand something over." },
+    { "fr": "un collègue", "en": "a coworker", "note": "A woman coworker is une collègue." }
+  ],
+  "grammar": {
+    "title": "je and vous",
+    "explanation": [
+      "Je means \"I\". Before a vowel sound it shortens to j'. In this lesson you meet it in je m'appelle and je suis.",
+      "Vous means \"you\". It's the polite form for one person, and also the word for more than one person.",
+      "The verb changes with the person: je m'appelle but vous vous appelez, je suis but vous êtes. For now, learn these pairs as set phrases."
+    ],
+    "examples": [
+      { "fr": "Je m'appelle Priya.", "en": "My name is Priya." },
+      { "fr": "Comment vous appelez-vous ?", "en": "What's your name?" },
+      { "fr": "Je suis Luc. Vous êtes Marie ?", "en": "I'm Luc. Are you Marie?" }
+    ]
+  },
+  "pronunciation": {
+    "sound": "The French r",
+    "explanation": [
+      "The French r is made at the back of the mouth, not with the tip of the tongue. Keep the tip of your tongue down, behind your lower front teeth.",
+      "Start from the g in \"go\", but don't close your throat completely: let the air rub through. It feels close to a light gargle.",
+      "Don't round your lips the way you do for an English r."
+    ],
+    "examples": [
+      { "fr": "merci", "en": "thank you" },
+      { "fr": "très", "en": "very" },
+      { "fr": "prénom", "en": "first name" },
+      { "fr": "bonjour", "en": "hello" },
+      { "fr": "au revoir", "en": "goodbye" }
+    ]
+  },
+  "exercises": [
+    {
+      "type": "listen-choose",
+      "fr": "Comment vous appelez-vous ?",
+      "options": ["What's your name?", "How are you?", "Where are you from?"],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "On a form, what do you write in the box marked « Prénom » ?",
+      "options": ["Your first name", "Your last name", "Your address"],
+      "answer": 0
+    },
+    { "type": "word-order", "en": "My name is Priya.", "words": ["Je", "m'appelle", "Priya."] },
+    { "type": "fill-blank", "before": "Vous ", "after": " Marie ?", "answer": "êtes", "en": "Are you Marie?" },
+    { "type": "dictation", "fr": "Je m'appelle Luc.", "en": "My name is Luc." },
+    {
+      "type": "multiple-choice",
+      "prompt": "Someone says « Je m'appelle Luc. Enchanté ! ». What do you answer?",
+      "options": ["Enchanté !", "Au revoir !", "De rien !"],
+      "answer": 0
+    },
+    { "type": "word-order", "en": "What's your name?", "words": ["Comment", "vous", "appelez-vous ?"] }
+  ],
+  "drills": [
+    { "fr": "Je m'appelle Priya.", "en": "My name is Priya." },
+    { "fr": "Comment vous appelez-vous ?", "en": "What's your name?" },
+    { "fr": "Enchanté, madame.", "en": "Nice to meet you, ma'am." },
+    { "fr": "Je suis votre collègue.", "en": "I'm your coworker." },
+    { "fr": "Mon prénom, c'est Priya.", "en": "My first name is Priya." },
+    { "fr": "Très bien, merci. Au revoir !", "en": "Very well, thank you. Goodbye!" }
+  ],
+  "canDoCheck": [
+    {
+      "type": "multiple-choice",
+      "prompt": "At a clinic, the receptionist asks « Comment vous appelez-vous ? ». You answer:",
+      "options": ["Je m'appelle Alex.", "Très bien, merci.", "Au revoir."],
+      "answer": 0
+    },
+    {
+      "type": "listen-choose",
+      "fr": "Votre nom de famille, s'il vous plaît ?",
+      "options": ["Your last name, please?", "Your first name, please?", "Your phone number, please?"],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "You want to know a new coworker's name. What do you ask?",
+      "options": ["Comment vous appelez-vous ?", "Comment allez-vous ?", "Ça va ?"],
+      "answer": 0
+    }
+  ],
+  "review": { "status": "unreviewed" }
+}

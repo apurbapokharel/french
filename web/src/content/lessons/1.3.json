@@ -1,0 +1,133 @@
+{
+  "$schema": "../lesson.schema.json",
+  "id": "1.3",
+  "unit": 1,
+  "order": 3,
+  "title": "Spelling your name",
+  "canDo": "spell your name and follow someone spelling theirs",
+  "cefrArea": "Information exchange",
+  "dialogue": {
+    "setting": "Priya is opening a bank account in Sudbury, Ontario. The bank advisor, Hélène, writes down her name.",
+    "lines": [
+      { "speaker": "Hélène", "fr": "Bonjour. Votre nom, s'il vous plaît ?", "en": "Hello. Your name, please?" },
+      { "speaker": "Priya", "fr": "Je m'appelle Priya Sharma.", "en": "My name is Priya Sharma." },
+      { "speaker": "Hélène", "fr": "Sharma… Ça s'écrit comment ?", "en": "Sharma… How do you spell that?" },
+      { "speaker": "Priya", "fr": "S, H, A, R, M, A.", "en": "S, H, A, R, M, A." },
+      { "speaker": "Hélène", "fr": "Et votre prénom ?", "en": "And your first name?" },
+      { "speaker": "Priya", "fr": "P, R, I, Y, A.", "en": "P, R, I, Y, A." },
+      { "speaker": "Hélène", "fr": "P, R, I, i grec, A ?", "en": "P, R, I, Y, A?" },
+      { "speaker": "Priya", "fr": "Oui, c'est ça. Et vous, comment vous appelez-vous ?", "en": "Yes, that's right. And you, what's your name?" },
+      {
+        "speaker": "Hélène",
+        "fr": "Hélène Bélanger. B, E accent aigu, L, A, N, G, E, R.",
+        "en": "Hélène Bélanger. B, E with an acute accent, L, A, N, G, E, R."
+      },
+      { "speaker": "Priya", "fr": "Merci, madame Bélanger.", "en": "Thank you, Ms. Bélanger." }
+    ]
+  },
+  "vocabulary": [
+    { "fr": "Ça s'écrit comment ?", "en": "How do you spell that?", "note": "Literally \"It's written how?\" Very common in everyday speech." },
+    { "fr": "Comment ça s'écrit ?", "en": "How is that spelled?", "note": "Same meaning." },
+    { "fr": "Pouvez-vous épeler, s'il vous plaît ?", "en": "Can you spell it, please?" },
+    { "fr": "épeler", "en": "to spell" },
+    { "fr": "l'alphabet", "en": "the alphabet" },
+    { "fr": "une lettre", "en": "a letter" },
+    { "fr": "C'est ça.", "en": "That's right." },
+    { "fr": "l'accent aigu", "en": "acute accent", "note": "The accent on é." },
+    { "fr": "l'accent grave", "en": "grave accent", "note": "The accent on è, à and ù." },
+    { "fr": "l'accent circonflexe", "en": "circumflex", "note": "The accent on ê, â, î, ô and û." },
+    { "fr": "la cédille", "en": "cedilla", "note": "The hook under ç." },
+    { "fr": "le tréma", "en": "diaeresis", "note": "The two dots on ë and ï, as in Noël." },
+    { "fr": "une majuscule", "en": "a capital letter" },
+    { "fr": "une minuscule", "en": "a lowercase letter" },
+    { "fr": "le trait d'union", "en": "hyphen", "note": "Common in names: Jean-Luc, Marie-Claire." },
+    { "fr": "i grec", "en": "the letter Y", "note": "Literally \"Greek i\"." },
+    { "fr": "double vé", "en": "the letter W" }
+  ],
+  "grammar": {
+    "title": "The alphabet",
+    "explanation": [
+      "French uses the same 26 letters as English, but most of the letter names sound different. Here they are, with a rough English sound for each:",
+      "A (ah), B (bay), C (say), D (day), E (uh), F (eff), G (zhay), H (ash), I (ee), J (zhee), K (kah), L (ell), M (em), N (en), O (oh), P (pay), Q (kü), R (air, with the French r), S (ess), T (tay), U (ü), V (vay), W (doo-bluh-vay), X (eeks), Y (ee-grek), Z (zed).",
+      "ü is not an English sound: say \"ee\", then round your lips as if for \"oo\" without moving your tongue.",
+      "To spell a letter with an accent, say the letter and then the accent: é is « e accent aigu », ç is « c cédille »."
+    ],
+    "examples": [
+      { "fr": "B, E accent aigu, L, A, N, G, E, R", "en": "Bélanger, spelled out" },
+      { "fr": "P, R, I, i grec, A", "en": "Priya, spelled out" },
+      { "fr": "Jean-Luc, avec un trait d'union", "en": "Jean-Luc, with a hyphen" }
+    ]
+  },
+  "pronunciation": {
+    "sound": "Letter names: e, i, g, j",
+    "explanation": [
+      "English speakers often mix up four letter names. In French, E sounds like \"uh\" and I sounds like \"ee\".",
+      "G sounds like \"zhay\" and J like \"zhee\". Both start with the sound in the middle of \"measure\".",
+      "They end the opposite way from English: the French G ends like the English letter J (\"jay\"), and the French J ends like the English letter G (\"jee\")."
+    ],
+    "examples": [
+      { "fr": "E, I", "en": "the letters E and I" },
+      { "fr": "G, J", "en": "the letters G and J" },
+      { "fr": "G comme Gérard", "en": "G as in Gérard" },
+      { "fr": "J comme Julie", "en": "J as in Julie" },
+      { "fr": "R, E accent aigu, M, I", "en": "Rémi, spelled out" }
+    ]
+  },
+  "exercises": [
+    {
+      "type": "listen-choose",
+      "fr": "Ça s'écrit comment ?",
+      "options": ["How do you spell that?", "What's your name?", "How are you?"],
+      "answer": 0
+    },
+    { "type": "multiple-choice", "prompt": "Which letter is called « i grec » ?", "options": ["Y", "I", "J"], "answer": 0 },
+    {
+      "type": "multiple-choice",
+      "prompt": "How does the French letter J sound?",
+      "options": ["zhee", "zhay", "jay"],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "In « Hélène », what is the accent on the first e called?",
+      "options": ["accent aigu", "accent grave", "cédille"],
+      "answer": 0
+    },
+    {
+      "type": "word-order",
+      "en": "Can you spell it, please?",
+      "words": ["Pouvez-vous", "épeler,", "s'il", "vous", "plaît ?"]
+    },
+    { "type": "fill-blank", "before": "Oui, c'est ", "after": ".", "answer": "ça", "en": "Yes, that's right." },
+    { "type": "dictation", "fr": "Ça s'écrit comment ?", "en": "How do you spell that?" }
+  ],
+  "drills": [
+    { "fr": "Ça s'écrit comment ?", "en": "How do you spell that?" },
+    { "fr": "Pouvez-vous épeler, s'il vous plaît ?", "en": "Can you spell it, please?" },
+    { "fr": "Oui, c'est ça.", "en": "Yes, that's right." },
+    { "fr": "G, J, E, I", "en": "the letters G, J, E, I" },
+    { "fr": "P, R, I, i grec, A", "en": "Priya, spelled out" },
+    { "fr": "Jean-Luc, avec un trait d'union.", "en": "Jean-Luc, with a hyphen." }
+  ],
+  "canDoCheck": [
+    {
+      "type": "listen-choose",
+      "fr": "B, E accent aigu, L, A, N, G, E, R",
+      "options": ["Bélanger", "Belanger", "Bélenger"],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "The clerk asks « Ça s'écrit comment ? ». What does the clerk want?",
+      "options": ["You to spell your name", "You to say your name again", "Your signature"],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "You spell your name, and the clerk reads it back correctly. What do you say?",
+      "options": ["Oui, c'est ça.", "Je ne sais pas.", "Bonsoir."],
+      "answer": 0
+    }
+  ],
+  "review": { "status": "unreviewed" }
+}

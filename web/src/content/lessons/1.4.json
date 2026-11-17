@@ -1,0 +1,148 @@
+{
+  "$schema": "../lesson.schema.json",
+  "id": "1.4",
+  "unit": 1,
+  "order": 4,
+  "title": "I don't understand",
+  "canDo": "say you don't understand and ask for help",
+  "cefrArea": "Conversation",
+  "dialogue": {
+    "setting": "Priya is at a pharmacy in Gatineau, Quebec. The pharmacist, Mr. Roy, speaks quickly.",
+    "lines": [
+      {
+        "speaker": "M. Roy",
+        "fr": "Bonjour ! Votre carte d'assurance maladie, s'il vous plaît.",
+        "en": "Hello! Your health insurance card, please."
+      },
+      {
+        "speaker": "Priya",
+        "fr": "Pardon ? Je ne comprends pas. Pouvez-vous répéter, s'il vous plaît ?",
+        "en": "Sorry? I don't understand. Can you repeat, please?"
+      },
+      { "speaker": "M. Roy", "fr": "Votre carte d'assurance maladie.", "en": "Your health insurance card." },
+      { "speaker": "Priya", "fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please." },
+      { "speaker": "M. Roy", "fr": "Votre… carte… d'assurance… maladie.", "en": "Your… health… insurance… card." },
+      { "speaker": "Priya", "fr": "Ah, d'accord ! Voilà.", "en": "Ah, OK! Here you go." },
+      { "speaker": "M. Roy", "fr": "Merci. Vous parlez anglais ?", "en": "Thank you. Do you speak English?" },
+      {
+        "speaker": "Priya",
+        "fr": "Oui. Je parle un peu français. Comment dit-on « prescription » en français ?",
+        "en": "Yes. I speak a little French. How do you say \"prescription\" in French?"
+      },
+      { "speaker": "M. Roy", "fr": "On dit « ordonnance ».", "en": "You say \"ordonnance\"." },
+      { "speaker": "Priya", "fr": "Une ordonnance. Merci beaucoup !", "en": "A prescription. Thank you very much!" }
+    ]
+  },
+  "vocabulary": [
+    { "fr": "Pardon ?", "en": "Sorry? Pardon?", "note": "Asks someone to repeat. Pardon on its own also means \"excuse me\"." },
+    { "fr": "Je ne comprends pas.", "en": "I don't understand." },
+    { "fr": "Je comprends.", "en": "I understand." },
+    { "fr": "Pouvez-vous répéter, s'il vous plaît ?", "en": "Can you repeat, please?" },
+    { "fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please." },
+    { "fr": "Comment dit-on … en français ?", "en": "How do you say … in French?" },
+    { "fr": "On dit…", "en": "You say…, We say…" },
+    { "fr": "Qu'est-ce que ça veut dire ?", "en": "What does that mean?" },
+    { "fr": "Je ne sais pas.", "en": "I don't know." },
+    { "fr": "Vous parlez anglais ?", "en": "Do you speak English?" },
+    { "fr": "Je parle un peu français.", "en": "I speak a little French." },
+    { "fr": "un peu", "en": "a little" },
+    { "fr": "d'accord", "en": "OK, all right" },
+    { "fr": "une ordonnance", "en": "a prescription" },
+    {
+      "fr": "la carte d'assurance maladie",
+      "en": "health insurance card",
+      "canadianNote": "Quebec's health card, issued by the RAMQ. Other provinces have their own cards."
+    },
+    { "fr": "la pharmacie", "en": "the pharmacy" },
+    { "fr": "le pharmacien", "en": "the pharmacist", "note": "A woman pharmacist is la pharmacienne." }
+  ],
+  "grammar": {
+    "title": "ne … pas as a fixed phrase",
+    "explanation": [
+      "To say \"not\", French puts ne before the verb and pas after it: je comprends means \"I understand\", je ne comprends pas means \"I don't understand\".",
+      "For now, learn je ne comprends pas and je ne sais pas as fixed phrases. You'll use ne … pas with other verbs later.",
+      "In everyday speech, people often drop the ne: je comprends pas, je sais pas. Learn to recognise it, but use the full form yourself."
+    ],
+    "examples": [
+      { "fr": "Je ne comprends pas.", "en": "I don't understand." },
+      { "fr": "Je ne sais pas.", "en": "I don't know." },
+      { "fr": "Je ne parle pas bien français.", "en": "I don't speak French well." }
+    ]
+  },
+  "pronunciation": {
+    "sound": "Rising voice for questions",
+    "explanation": [
+      "In everyday French, you can turn a sentence into a yes-or-no question just by raising your voice at the end. The words stay the same.",
+      "Vous parlez anglais, with the voice going down, is a statement. Vous parlez anglais ?, with the voice going up, is a question.",
+      "Questions that start with a question word, like Comment dit-on … ?, often go down at the end instead."
+    ],
+    "examples": [
+      { "fr": "Vous parlez anglais ?", "en": "Do you speak English? (voice goes up)" },
+      { "fr": "Vous parlez anglais.", "en": "You speak English. (voice goes down)" },
+      { "fr": "Ça va ?", "en": "How's it going? (voice goes up)" },
+      { "fr": "Ça va.", "en": "It's going fine. (voice goes down)" }
+    ]
+  },
+  "exercises": [
+    {
+      "type": "listen-choose",
+      "fr": "Je ne comprends pas.",
+      "options": ["I don't understand.", "I don't know.", "I don't speak French."],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "The cashier speaks too fast. What do you say?",
+      "options": ["Plus lentement, s'il vous plaît.", "Très bien, merci.", "Bonne journée !"],
+      "answer": 0
+    },
+    {
+      "type": "word-order",
+      "en": "Can you repeat, please?",
+      "words": ["Pouvez-vous", "répéter,", "s'il", "vous", "plaît ?"]
+    },
+    { "type": "fill-blank", "before": "Je ne ", "after": " pas.", "answer": "sais", "en": "I don't know." },
+    { "type": "dictation", "fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please." },
+    {
+      "type": "multiple-choice",
+      "prompt": "You want the French word for \"form\". What do you ask?",
+      "options": ["Comment dit-on « form » en français ?", "Comment allez-vous ?", "Ça s'écrit comment ?"],
+      "answer": 0
+    },
+    {
+      "type": "listen-choose",
+      "fr": "Qu'est-ce que ça veut dire ?",
+      "options": ["What does that mean?", "How do you say that?", "Can you repeat that?"],
+      "answer": 0
+    }
+  ],
+  "drills": [
+    { "fr": "Je ne comprends pas.", "en": "I don't understand." },
+    { "fr": "Pouvez-vous répéter, s'il vous plaît ?", "en": "Can you repeat, please?" },
+    { "fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please." },
+    { "fr": "Comment dit-on « form » en français ?", "en": "How do you say \"form\" in French?" },
+    { "fr": "Vous parlez anglais ?", "en": "Do you speak English?" },
+    { "fr": "Je parle un peu français.", "en": "I speak a little French." }
+  ],
+  "canDoCheck": [
+    {
+      "type": "multiple-choice",
+      "prompt": "At Service Canada, the agent says something you don't understand. What do you say first?",
+      "options": ["Pardon ? Je ne comprends pas.", "Oui, c'est ça.", "Enchanté."],
+      "answer": 0
+    },
+    {
+      "type": "multiple-choice",
+      "prompt": "You caught a few words, but the agent spoke too fast. What do you ask?",
+      "options": ["Pouvez-vous répéter, s'il vous plaît ?", "Comment vous appelez-vous ?", "Au revoir !"],
+      "answer": 0
+    },
+    {
+      "type": "listen-choose",
+      "fr": "Vous parlez anglais ?",
+      "options": ["Do you speak English?", "Are you English?", "Do you understand?"],
+      "answer": 0
+    }
+  ],
+  "review": { "status": "unreviewed" }
+}
