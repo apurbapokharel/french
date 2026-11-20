@@ -5,3 +5,4 @@ __pycache__/
 .venv/
 *.egg-info/
 web/src/content/types/
+apulearning/data/
